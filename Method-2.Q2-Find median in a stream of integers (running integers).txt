@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+void find(int a[],int n)
+{
+  vector<int>v;
+    for(int i=0;i<n;i++)
+    { 
+       int size=i+1;
+      
+       if(i==0)v.push_back(a[i]);
+       else 
+       {
+           if(v.back()<a[i])
+           v.push_back(a[i]);
+           else 
+           {   stack<int>st;
+               while(v.size() && v.back()>a[i])
+                {
+                    st.push(v.back());
+            
+                    v.pop_back();
+                }
+                v.push_back(a[i]);
+                while(!st.empty())
+                { 
+                    v.push_back(st.top());
+                    st.pop();
+                }
+               
+           }
+       }
+       
+        //sort(a,a+size);
+        if(size%2!=0)
+         {
+             
+             cout<<i+1<<"stream median="<<v[i/2]<<endl;
+         }
+         else 
+         cout<<i+1<<"stream median="<<(v[i/2]+v[i/2+1])/2.0<<endl;
+    }
+}
+int main() {
+ int n;
+  cin>>n;
+  int a[n];
+  
+    for(int i=0;i<n;i++)
+     cin>>a[i];
+     
+     find(a,n);
+	return 0;
+}
