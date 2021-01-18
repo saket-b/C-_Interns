@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<stdlib.h>
+int comp(const void *a,const void *b)
+{
+    return (*(int *)a-*(int *)b);
+}
+void find(int a[],int n)
+{
+    
+    qsort(a,n,sizeof(int),comp);
+    
+    int first=a[0];
+    int second=a[0];
+    
+    for(int  i=1;i<n;i++)
+    {
+        if(a[i]==first)
+         continue;
+         else
+         { second=a[i];
+             break;
+         }
+    }
+    printf("first smallest element= %d\n",first);
+    printf("second smallest element= %d",second);
+}
+int main() {
+	//code
+	int n;
+	scanf("%d",&n);
+	int a[n];
+	for(int i=0;i<n;i++)
+	 scanf("%d",&a[i]);
+	 find(a,n);
+	return 0;
+}
